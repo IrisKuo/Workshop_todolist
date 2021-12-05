@@ -1,45 +1,32 @@
 // TO DO
 document.addEventListener("DOMContentLoaded", function (){
-
-  const selectAll = document.querySelectorAll('li');
-  selectAll.forEach(li => li.addEventListener('click',function(){
-    // console.log(li)
-    if (li.className !== "checked" ){
-     li.className = "checked"}
-    else{li.className = ""}
-
-  })
-  )
-  const closeBtn = document.querySelector(".container")
+                                    // 增加check功能
+  const checked = document.querySelector('ul')
+    checked.addEventListener('click',(e) => {
+      if (e.target.className !== "checked" ){
+      e.target.className = "checked"}
+      else{e.target.className = ""}
+    })
+                                     // 按 x 移除功能
+  const closeBtn = document.querySelector('ul')
+    closeBtn.addEventListener('click',(e) => {
+      if(e.target.innerText == 'x'){
+      e.target.parentNode.remove();}
+    })
+                                      // key in輸入功能
+  const inPut = document.querySelector('input')
+  const todoItem = document.querySelector('span')
+  const todo_ul = document.querySelector('ul')
   
-  closeBtn.addEventListener('click',function(e){
-    console.log(e)
-    if(e.target.innerText == 'x'){
-    e.target.parentNode.remove();}
-  });
-
-  const input = document.querySelector('#input')
-  const addBtn = document.querySelector('#addBtn')
-  const todoList = document.querySelector('.container')
-
-
-    addBtn.addEventListener('click',function(e){
-    const inputValuebtn = input.value.trim();
-    if(inputValuebtn !== "" ){
-    
-    const todo_span = document.createElement("span")
-    const todo = document.createElement("li")
-
-    todo_span.innerText = 'x'
-    todo_span.classList.add('close')
-    todo.innerHTML = input.value
-    todo.appendChild(todo_span)
-    todoList.appendChild(todo)
-    input.value = "";
-
-    }
- });
-
-  
-
+    todoItem.addEventListener('click',(e) => {
+      const todoList = document.createElement('li')
+      todoList.innerHTML = inPut.value
+      todo_ul.appendChild(todoList)
+                                      //  key in後增加 x 關閉功能
+      const closeSpan =document.createElement('ul')
+      closeSpan.innerText = 'x'            
+      closeSpan.classList.add('close')
+      todoList.appendChild(closeSpan)
+    })
 });
+
